@@ -2,8 +2,8 @@
 mode 54,15
 color E
 cd C:\Users\%username%\AppData\Roaming
-mkdir $mycity
-cd $mycity
+mkdir $nqsgames
+cd $nqsgames
 
 title MyCity - v3.0.0
 echo x=msgbox("Can't initialize action. You playing this game too wrong!", 0+16, "Error") > error.vbs
@@ -310,8 +310,8 @@ cls
 		exit
 		
 :error
-	start error.vbs
-	goto EAS
+    start error.vbs
+    goto EAS
 
 :EAS
 echo %cash% > cash.ini
