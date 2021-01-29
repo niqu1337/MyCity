@@ -1,14 +1,17 @@
 @echo off
+cd C:\Users\%username%\AppData\Roaming
+mkdir $mycity
+cd $mycity
+mkdir $mp
 mode 54,15
 color E
 
-title MyCity -- v3.0.1
+title MyCity -- v3.0.2
 echo x=msgbox("Can't initialize action. You playing this game too wrong!", 0+16, "MyCity ERROR") > error.vbs
 
 set housePrice=250
 set apartemntPrice=850
 set villaPrice=1250
-set path=C:\Users\%username%\AppData\Roaming\$mycity
 set var1=0
 goto startup
 
@@ -232,10 +235,6 @@ goto startup
 	goto game
 
 :CreateSave
-    cd C:\Users\%username%\AppData\Roaming
-    mkdir $mycity
-    cd $mycity
-
 	cls
 	echo Enter your player name
 	set /p "plrName=>> "
@@ -257,11 +256,6 @@ goto startup
 	goto LoadSave
 
 :LoadSave
-	if not exist %path% (
-		goto error
-	)
-
-	cd C:\Users\%username%\AppData\Roaming\$mycity
 	for /f "Delims=" %%a in (.player) do (
 	set plrName=%%a
 	)
@@ -310,7 +304,7 @@ cls
 	echo.
 	echo.
 	echo.
-	echo 1 - Play on new save (Deleting last save)
+	echo 1 - Play on new save
 	echo 2 - Load last save
 	echo.
 	echo 3 - Play Multiplayer (Local Network)
