@@ -46,9 +46,9 @@ goto startup
 
 :BuildMode
     cls
-    echo 1 - Build House (%housePrice%$)
-    echo 2 - Build Apartment (%apartmentPrice%$)
-    echo 3 - Build Villa (%villaPrice%$)
+    echo 1 - Build House (250$)
+    echo 2 - Build Apartment (850$)
+    echo 3 - Build Villa (1250$)
     echo 4 - Exit build mode
     set /p SelectBuild= 
     if %SelectBuild%==1 goto BuildHouse
@@ -202,7 +202,7 @@ goto startup
 	echo Robbing atm... (wait %timeout% sec)
 	ping -n %timeout% localhost > nul
 	
-	set /a roll=(%random% %%2)
+	set /a roll=(%random% %%3)
 	if roll==0 goto ATM
 	if roll==1 goto ATMOK
 	if roll==2 goto ATMBAD
