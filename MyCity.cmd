@@ -2,7 +2,6 @@
 cd C:\Users\%username%\AppData\Roaming
 mkdir $mycity
 cd $mycity
-mkdir $mp
 mode 54,15
 color E
 
@@ -14,7 +13,6 @@ set apartemntPrice=850
 set villaPrice=1250
 set var1=0
 goto startup
-
 	
 :game
     echo %cash% > cash.ini
@@ -299,7 +297,7 @@ goto startup
 	goto game
 	
 :startup
-cls
+	cls
     echo +---------------------  MyCity  ---------------------+
 	echo.
 	echo.
@@ -315,7 +313,7 @@ cls
 		goto error
 		
 :MultiPlayer
-	echo Working on multiplayer!
+	echo In mycity 5.0!
 	pause >>nul
 	goto startup
 
