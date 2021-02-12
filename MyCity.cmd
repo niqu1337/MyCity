@@ -5,13 +5,14 @@ cd $mycity
 mode 54,15
 color E
 
-title MyCity -- v3.0.2
+title MyCity -- v3.0.5
 echo x=msgbox("Can't initialize action. You playing this game too wrong!", 0+16, "MyCity ERROR") > error.vbs
+echo x=msgbox("Game force closed.", 0+16, "Force Close") > forceClose.vbs
 
 set housePrice=250
 set apartemntPrice=850
 set villaPrice=1250
-set var1=0
+set ForceRestart=0
 goto startup
 	
 :game
@@ -22,7 +23,7 @@ goto startup
     echo %countH% > houses.ini
     echo %countA% > apartments.ini
     echo %countV% > villas.ini
-    if var1==5 goto error
+    if ForceRestart==5 goto forceClose
 
     cls
     echo +---------------------  MyCity  ---------------------+
@@ -42,7 +43,7 @@ goto startup
     if %SelectGame%==1 goto BuildMode
     if %SelectGame%==2 goto HireMode
     if %SelectGame%==3 goto WorkMode
-    if %SelectGame%==4 goto EAS
+    if %SelectGame%==4 goto Exit
     goto error
 
 :BuildMode
@@ -192,14 +193,14 @@ goto startup
 
 :Operator
 	cls
-	echo In MyCity-v3.2.1!
+	echo In MyCity-v3.2!
 	timeout 10 >>nul
 	goto game
 
 :ATM
 	cls
 	set /a timeout=18
-	set /a var1=var1+1
+	set /a ForceRestart=ForceRestart+1
 	echo Robbing atm... (wait %timeout% sec)
 	ping -n %timeout% localhost > nul
 	
@@ -228,7 +229,7 @@ goto startup
 
 :LottoMode
 	cls
-	echo In MyCity-v3.2!
+	echo In MyCity-v3.2.1!
 	timeout 10 >>nul
 	goto game
 
@@ -298,30 +299,26 @@ goto startup
 	
 :startup
 	cls
-        echo +---------------------  MyCity  ---------------------+
+    echo +---------------------  MyCity  ---------------------+
 	echo.
 	echo.
 	echo.
 	echo 1 - Play on new save
 	echo 2 - Load last save
-	echo.
-	echo 3 - Play Multiplayer (Local Network)
 		set /p SelectStartup= 
 		if %SelectStartup%==1 goto CreateSave
 		if %SelectStartup%==2 goto LoadSave
-		if %SelectStartup%==3 goto MultiPlayer
 		goto error
-		
-:MultiPlayer
-	echo In mycity 5.0!
-	pause >>nul
-	goto startup
 
 :error
 	start error.vbs
 	exit
+	
+:forceClose
+	start forceClose.vbs
+	exit
 
-:EAS
+:Exit
 echo %cash% > cash.ini
 echo %level% > level.ini
 echo %citizens% > citizens.ini
