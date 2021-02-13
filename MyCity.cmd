@@ -7,44 +7,41 @@ color E
 
 title MyCity -- v3.0.5
 echo x=msgbox("Can't initialize action. You playing this game too wrong!", 0+16, "MyCity ERROR") > error.vbs
-echo x=msgbox("Game force closed.", 0+16, "Force Close") > forceClose.vbs
 
 set housePrice=250
-set apartemntPrice=850
+set apartmentPrice=850
 set villaPrice=1250
-set ForceRestart=0
 goto startup
 	
 :game
-    echo %cash% > cash.ini
-    echo %level% > level.ini
-    echo %citizens% > citizens.ini
-    
-    echo %countH% > houses.ini
-    echo %countA% > apartments.ini
-    echo %countV% > villas.ini
-    if ForceRestart==5 goto forceClose
+	echo %cash% > cash.ini
+	echo %level% > level.ini
+	echo %citizens% > citizens.ini
 
-    cls
-    echo +---------------------  MyCity  ---------------------+
-    echo CASH: %cash%  -  LEVEL: %level%
-    echo HOUSES: %countH%  -  VILLAS: %countV%
-    echo APARTMENS: %countA%  -  CITIZENS: %citizens%
-    echo +----------------------------------------------------+
-    echo.
-    echo.
-    echo.
-    echo 1 - Build mode
-    echo 2 - Hire staff
-    echo 3 - Goto work
-    echo.
-    echo 4 - Exit And Save
-    set /p SelectGame= 
-    if %SelectGame%==1 goto BuildMode
-    if %SelectGame%==2 goto HireMode
-    if %SelectGame%==3 goto WorkMode
-    if %SelectGame%==4 goto Exit
-    goto error
+	echo %countH% > houses.ini
+	echo %countA% > apartments.ini
+	echo %countV% > villas.ini
+
+	cls
+	echo +---------------------  MyCity  ---------------------+
+	echo CASH: %cash%  -  LEVEL: %level%
+	echo HOUSES: %countH%  -  VILLAS: %countV%
+	echo APARTMENS: %countA%  -  CITIZENS: %citizens%
+	echo +----------------------------------------------------+
+	echo.
+	echo.
+	echo.
+	echo 1 - Build mode
+	echo 2 - Hire staff
+	echo 3 - Goto work
+	echo.
+	echo 4 - Exit And Save
+	set /p SelectGame= 
+	if %SelectGame%==1 goto BuildMode
+	if %SelectGame%==2 goto HireMode
+	if %SelectGame%==3 goto WorkMode
+	if %SelectGame%==4 goto Exit
+	goto error
 
 :BuildMode
     cls
@@ -179,10 +176,9 @@ goto startup
 
 :MCDonalds
 	cls
-	set /a timeout=13
-	if timeout==0 goto McDonalds
-	echo Working in McDonalds... (wait %timeout% sec)
-	ping -n %timeout% localhost > nul
+	if MCDONALDS==0 goto McDonalds
+	echo Working in McDonalds... (wait 8 sec)
+	ping -n 8 localhost > nul
 	
 	set /a earnedCash=(%random% %%80)
 	if earnedCash==0 goto MCDonalds
@@ -199,10 +195,9 @@ goto startup
 
 :ATM
 	cls
-	set /a timeout=18
-	set /a ForceRestart=ForceRestart+1
-	echo Robbing atm... (wait %timeout% sec)
-	ping -n %timeout% localhost > nul
+	if ATM==0 goto ATM
+	echo Robbing atm... (wait 18 sec)
+	ping -n 18 localhost > nul
 	
 	set /a roll=(%random% %%3)
 	if roll==0 goto ATM
@@ -312,10 +307,6 @@ goto startup
 
 :error
 	start error.vbs
-	exit
-	
-:forceClose
-	start forceClose.vbs
 	exit
 
 :Exit
