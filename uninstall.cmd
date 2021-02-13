@@ -4,6 +4,6 @@ color E
 cd C:\Users\%username%\AppData\Roaming
 
 title MyCity -- Uninstall
-echo You really want to uninstall mycity files? (Y/N)
+echo Type Y to uninstall MyCity files
 del $mycity >>nul
 exit
