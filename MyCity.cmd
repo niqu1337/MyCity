@@ -5,7 +5,7 @@ cd $mycity
 mode 54,15
 color E
 
-title MyCity -- v3.0.5
+title MyCity -- v3.1.1
 echo x=msgbox("Can't initialize action. You playing this game too wrong!", 0+16, "MyCity ERROR") > error.vbs
 
 set housePrice=250
