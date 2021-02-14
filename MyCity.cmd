@@ -6,7 +6,7 @@ mode 54,15
 color E
 
 title MyCity -- v3.1.1
-echo x=msgbox("Something creating error ;c. You playing this game too wrong!", 0+16, "MyCity ERROR") > error.vbs
+echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+16, "MyCity ERROR") > error.vbs
 
 set housePrice=250
 set apartmentPrice=850
