@@ -21,9 +21,17 @@ goto startup
 	echo %countA% > apartments.ini
 	echo %countV% > villas.ini
 
-	if %uiTheme%==Default color 07
+	:: Classic Themes
+	if %uiTheme%==Default color 0F
 	if %uiTheme%==Dark color 0E
 	if %uiTheme%==Light color 70
+	:: Custom Themes
+	if %uiTheme%==Red color 04
+	if %uiTheme%==Green color 02
+	if %uiTheme%==Blue color 01
+	if %uiTheme%==Purple color 05
+	if %uiTheme%==Aqua color 03
+	if %uiTheme%==Grey color 08
 
 	cls
 	echo +---------------------  MyCity  ---------------------+
