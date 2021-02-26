@@ -5,8 +5,8 @@ cd $mycity
 mode 54,15
 color E
 
-title MyCity -- v3.1.2
-echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+16, "MyCity ERROR") > error.vbs
+title MyCity -- v3.1.3
+echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+16, "Oops something creating errors") > errorMessage.vbs
 
 set housePrice=250
 set apartmentPrice=850
@@ -55,17 +55,17 @@ goto startup
 	goto error
 
 :BuildMode
-    cls
-    echo 1 - Build House (250$)
-    echo 2 - Build Apartment (850$)
-    echo 3 - Build Villa (1250$)
-    echo 4 - Exit build mode
-    set /p SelectBuild= 
-    if %SelectBuild%==1 goto BuildHouse
-    if %SelectBuild%==2 goto BuildApartment
-    if %SelectBuild%==3 goto BuildVilla
-    if %SelectBuild%==4 goto game
-    goto error
+	cls
+	echo 1 - Build House (250$)
+	echo 2 - Build Apartment (850$)	
+	echo 3 - Build Villa (1250$)
+	echo 4 - Exit build mode
+	set /p SelectBuild= 
+	if %SelectBuild%==1 goto BuildHouse
+	if %SelectBuild%==2 goto BuildApartment
+	if %SelectBuild%==3 goto BuildVilla
+	if %SelectBuild%==4 goto game
+	goto error
 
 :HireMode
 	cls
@@ -379,7 +379,7 @@ goto startup
 
 :LottoMode
 	cls
-	echo In MyCity-v3.2.1!
+	echo In MyCity-v5.0
 	timeout 10 >>nul
 	goto game
 
@@ -393,7 +393,7 @@ goto startup
 	cls
 	echo Enter your city name
 	set /p "cityName=>> "
-	
+
 	echo %plrName% > .player
 	echo %cityName% > .city
 	
@@ -468,7 +468,7 @@ goto startup
 		goto error
 
 :error
-	start error.vbs
+	start errorMessage.vbs
 	exit
 
 :Exit
