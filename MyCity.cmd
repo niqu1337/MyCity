@@ -5,7 +5,7 @@ cd $mycity
 mode 54,15
 color E
 
-title MyCity -- v3.1.1
+title MyCity -- v3.1.2
 echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+16, "MyCity ERROR") > error.vbs
 
 set housePrice=250
@@ -17,10 +17,13 @@ goto startup
 	echo %cash% > cash.ini
 	echo %level% > level.ini
 	echo %citizens% > citizens.ini
-
 	echo %countH% > houses.ini
 	echo %countA% > apartments.ini
 	echo %countV% > villas.ini
+
+	if %uiTheme%==Default color 07
+	if %uiTheme%==Dark color 0E
+	if %uiTheme%==Light color 70
 
 	cls
 	echo +---------------------  MyCity  ---------------------+
@@ -215,7 +218,7 @@ goto startup
 
 		:OperatorCALL2
 		cls
-		echo [Caller] I kidnapped fast help me!
+		echo [Caller] I got kidnapped fast help me!
 		echo Send the appropriate unit
 		echo 1 - Police Unit
 		echo 2 - Firefighter Unit
@@ -343,7 +346,7 @@ goto startup
 	echo Robbing atm... (wait 18 sec)
 	ping -n 18 localhost > nul
 	
-	set /a roll=(%random% %%3)
+	set /a roll=(%random% %%2)
 	if roll==0 goto ATM
 	if roll==1 goto ATMOK
 	if roll==2 goto ATMBAD
@@ -373,6 +376,8 @@ goto startup
 	goto game
 
 :CreateSave
+	echo Dark > .uiTheme
+
 	cls
 	echo Enter your player name
 	set /p "plrName=>> "
@@ -394,6 +399,11 @@ goto startup
 	goto LoadSave
 
 :LoadSave
+	for /f "Delims=" %%a in (.uiTheme) do (
+	set uiTheme=%%a
+	)
+	echo %uiTheme%
+
 	for /f "Delims=" %%a in (.player) do (
 	set plrName=%%a
 	)
