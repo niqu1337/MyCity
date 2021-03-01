@@ -1,4 +1,11 @@
 @echo off
+cd Modules
+
+// EasyRPC Module
+cd EasyRPC
+start runRPC.exe
+
+c:
 cd C:\Users\%username%\AppData\Roaming
 mkdir $mycity
 cd $mycity
