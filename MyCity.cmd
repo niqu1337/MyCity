@@ -86,13 +86,11 @@ goto startup
 	cls
 	echo 1 - Work in Mc Donald's
 	echo 2 - Rob ATM
-	echo 3 - Work as 911 Operator
-	echo 4 - Exit work mode
+	echo 3 - Exit work mode
 	set /p SelectWork= 
 	if %SelectWork%==1 goto MCDonalds
 	if %SelectWork%==2 goto ATM
-	if %SelectWork%==3 goto Operator
-	if %SelectWork%==4 goto game
+	if %SelectWork%==3 goto game
 	goto error
 
 
@@ -197,156 +195,6 @@ goto startup
 	echo You earned %earnedCash%!
 	ping -n 3 localhost > nul
 	goto game
-
-:Operator
-	cls
-	echo Waiting for calls... (wait 8 sec)
-	ping -n 8 localhost > nul
-
-	set /a roll=(%random% %%3)
-	if roll==0 goto Operator
-	if roll==1 goto OperatorCALL1
-	if roll==2 goto OperatorCALL2
-	if roll==3 goto OperatorCALL3
-
-		:OperatorCALL1
-		cls
-		echo [Caller] Help me my cat on tree and he dont know how to get down!
-		echo Send the appropriate unit
-		echo 1 - Police Unit
-		echo 2 - Firefighter Unit
-		echo 3 - Paramedic Unit
-		echo 4 - Towtruck Unit
-		set /p OperatorOption= 
-		if %OperatorOption%==1 goto OperatorPOLICEF
-		if %OperatorOption%==2 goto OperatorFIREFIGHTER
-		if %OperatorOption%==3 goto OperatorPARAMEDICF
-		if %OperatorOption%==4 goto OperatorTOWTRUCKF
-		goto error
-
-		:OperatorCALL2
-		cls
-		echo [Caller] I got kidnapped fast help me!
-		echo Send the appropriate unit
-		echo 1 - Police Unit
-		echo 2 - Firefighter Unit
-		echo 3 - Paramedic Unit
-		echo 4 - Towtruck Unit
-		set /p OperatorOption= 
-		if %OperatorOption%==1 goto OperatorPOLICE
-		if %OperatorOption%==2 goto OperatorFIREFIGHTERF
-		if %OperatorOption%==3 goto OperatorPARAMEDICF
-		if %OperatorOption%==4 goto OperatorTOWTRUCKF
-		goto error
-
-		:OperatorCALL3
-		cls
-		echo [Caller] Someone blocked my car you can help me?
-		echo Send the appropriate unit
-		echo 1 - Police Unit
-		echo 2 - Firefighter Unit
-		echo 3 - Paramedic Unit
-		echo 4 - Towtruck Unit
-		set /p OperatorOption= 
-		if %OperatorOption%==1 goto OperatorPOLICEF
-		if %OperatorOption%==2 goto OperatorFIREFIGHTERF
-		if %OperatorOption%==3 goto OperatorPARAMEDICF
-		if %OperatorOption%==4 goto OperatorTOWTRUCK
-		goto error
-			
-			:OperatorPOLICE
-			echo [Operator] Police unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a earnedCash=(%random% %%300)
-			if earnedCash==0 goto OperatorPOLICE
-			set /a cash=cash+earnedCash
-			echo You earned %earnedCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-			:OperatorPOLICEF
-			echo [Operator] Police unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a lostCash=(%random% %%300)
-			if lostCash==0 goto OperatorPOLICEF
-			set /a cash=cash-lostCash
-			echo You lost %lostCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-
-
-			:OperatorFIREFIGHTER
-			echo [Operator] Firefighter unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a earnedCash=(%random% %%300)
-			if earnedCash==0 goto OperatorFIREFIGHTER
-			set /a cash=cash+earnedCash
-			echo You earned %earnedCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-			:OperatorFIREFIGHTERF
-			echo [Operator] Firefighter unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a lostCash=(%random% %%300)
-			if lostCash==0 goto OperatorFIREFIGHTERF
-			set /a cash=cash-lostCash
-			echo You lost %lostCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-
-
-			:OperatorPARAMEDIC
-			echo [Operator] Paramedic unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a earnedCash=(%random% %%300)
-			if earnedCash==0 goto OperatorPARAMEDIC
-			set /a cash=cash+earnedCash
-			echo You earned %earnedCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-			:OperatorPARAMEDICF
-			echo [Operator] Paramedic unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a lostCash=(%random% %%300)
-			if lostCash==0 goto OperatorPARAMEDICF
-			set /a cash=cash-lostCash
-			echo You lost %lostCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-
-
-			:OperatorTOWTRUCK
-			echo [Operator] Towtruck unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a earnedCash=(%random% %%300)
-			if earnedCash==0 goto OperatorTOWTRUCK
-			set /a cash=cash+earnedCash
-			echo You earned %earnedCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-			:OperatorTOWTRUCKF
-			echo [Operator] Towtruck unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a lostCash=(%random% %%300)
-			if lostCash==0 goto OperatorTOWTRUCKF
-			set /a cash=cash-lostCash
-			echo You lost %lostCash%!
-			ping -n 3 localhost > nul
-			goto game
 
 :ATM
 	cls
