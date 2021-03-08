@@ -477,5 +477,5 @@ echo %countA% > apartments.ini
 echo %countV% > villas.ini
 exit
 
-:: MyCity Made By niqu_#1337
-:: CityModHook Made By niqu_#1337
+:: MyCity Made By niqu_#9728
+:: CityModHook Made By niqu_#9728
