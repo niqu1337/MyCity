@@ -37,7 +37,7 @@ goto startup
 	echo +----------------------------------------------------+
 	echo.
 	echo + CityModHook Version v2.1
-	echo.
+	echo + CityModHook from 10MAY NEVER get update/hotfix
 	echo 1 - Build mode
 	echo 2 - Hire staff
 	echo 3 - Goto work

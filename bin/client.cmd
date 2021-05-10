@@ -1,11 +1,4 @@
 @echo off
-cd Modules
-
-// EasyRPC Module
-cd EasyRPC
-start runRPC.exe
-
-c:
 cd C:\Users\%username%\AppData\Roaming
 mkdir $mycity
 cd $mycity
@@ -15,9 +8,9 @@ color E
 title MyCity -- v3.1.3
 echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+16, "Oops something creating errors") > errorMessage.vbs
 
-set housePrice=250
-set apartmentPrice=850
-set villaPrice=1250
+set housePrice=350
+set apartmentPrice=1250
+set villaPrice=2500
 goto startup
 	
 :game
@@ -42,7 +35,7 @@ goto startup
 
 	cls
 	echo +---------------------  MyCity  ---------------------+
-	echo CASH: %cash%  -  LEVEL: %level%
+	echo CASH: %cash%  -  LEVEL: ?
 	echo HOUSES: %countH%  -  VILLAS: %countV%
 	echo APARTMENS: %countA%  -  CITIZENS: %citizens%
 	echo +----------------------------------------------------+
@@ -63,9 +56,9 @@ goto startup
 
 :BuildMode
 	cls
-	echo 1 - Build House (250$)
-	echo 2 - Build Apartment (850$)	
-	echo 3 - Build Villa (1250$)
+	echo 1 - Build House (350$)
+	echo 2 - Build Apartment (1250$)	
+	echo 3 - Build Villa (2500$)
 	echo 4 - Exit build mode
 	set /p SelectBuild= 
 	if %SelectBuild%==1 goto BuildHouse
@@ -234,7 +227,7 @@ goto startup
 
 :LottoMode
 	cls
-	echo In MyCity-v5.0
+	echo I don't know what day lotto will be added ;c
 	timeout 10 >>nul
 	goto game
 
