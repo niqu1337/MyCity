@@ -1,1 +1,0 @@
-If somethings not working try to install .NET Framework using the [install .NET Framework.exe] file!
