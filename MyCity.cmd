@@ -5,7 +5,7 @@ cd $mycity
 mode 54,15
 color E
 
-title MyCity -- v3.1.3
+title MyCity -- v3.1.4
 echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+16, "Oops something creating errors") > errorMessage.vbs
 
 set housePrice=350
@@ -35,7 +35,7 @@ goto startup
 
 	cls
 	echo +---------------------  MyCity  ---------------------+
-	echo CASH: %cash%  -  LEVEL: ?
+	echo CASH: %cash%  -  LEVEL: none
 	echo HOUSES: %countH%  -  VILLAS: %countV%
 	echo APARTMENS: %countA%  -  CITIZENS: %citizens%
 	echo +----------------------------------------------------+
@@ -304,7 +304,7 @@ goto startup
 	
 :startup
 	cls
-    echo +---------------------  MyCity  ---------------------+
+	echo +---------------------  MyCity  ---------------------+
 	echo.
 	echo.
 	echo.
@@ -329,4 +329,4 @@ echo %countA% > apartments.ini
 echo %countV% > villas.ini
 exit
 
-:: MyCity Made By niqu_#9728
+:: MyCity Made By niqu#6101

@@ -5,18 +5,19 @@ cd $citymodhook
 mode 54,15
 color E
 
-title MyCity -- CityModHook
-echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+16, "MyCity ERROR") > error.vbs
+title MyCity -- CityModHook v2.2
+echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+16, "MyCity ERROR") > errorMessage.vbs
 
 set housePrice=250
 set apartmentPrice=850
 set villaPrice=1250
-:: Put Mod Vars BELOW!
+:: BELOW THIS TEXT IS PLACE WHERE U CAN PUT SOME MOD VARS (exam: set examplemod=1234 || also u can put text and )
 
 
 
 goto startup
-	
+
+
 :game
 	echo %cash% > cash.ini
 	echo %level% > level.ini
@@ -31,13 +32,13 @@ goto startup
 
 	cls
 	echo +---------------------  MyCity  ---------------------+
-	echo CASH: %cash%  -  LEVEL: %level%
+	echo CASH: %cash%  -  LEVEL: none
 	echo HOUSES: %countH%  -  VILLAS: %countV%
 	echo APARTMENS: %countA%  -  CITIZENS: %citizens%
 	echo +----------------------------------------------------+
 	echo.
-	echo + CityModHook Version v2.1
-	echo + CityModHook from 10MAY NEVER get update/hotfix
+	echo + CityModHook Version v2.2
+	echo.
 	echo 1 - Build mode
 	echo 2 - Hire staff
 	echo 3 - Goto work
@@ -349,7 +350,7 @@ goto startup
 	if ATM==0 goto ATM
 	echo Robbing atm... (wait 18 sec)
 	ping -n 18 localhost > nul
-	
+
 	set /a roll=(%random% %%2)
 	if roll==0 goto ATM
 	if roll==1 goto ATMOK
@@ -362,7 +363,7 @@ goto startup
 		echo You earned %earnedCash%!
 		ping -n 3 localhost > nul
 		goto game
-		
+
 		:ATMBAD
 		set /a lostCash=(%random% %%600)
 		if lostCash==0 goto ATMBAD
@@ -375,7 +376,7 @@ goto startup
 
 :LottoMode
 	cls
-	echo Not in citymodhook ;c - But you can create mod for lotto c;
+	echo Not in citymodhook ;c - But also you can create mod for it
 	timeout 10 >>nul
 	goto game
 
@@ -464,7 +465,7 @@ goto startup
 		goto error
 
 :error
-	start error.vbs
+	start errorMessage.vbs
 	exit
 
 :Exit
@@ -477,5 +478,5 @@ echo %countA% > apartments.ini
 echo %countV% > villas.ini
 exit
 
-:: MyCity Made By niqu_#9728
-:: CityModHook Made By niqu_#9728
+:: MyCity Made By niqu#6101
+:: CityModHook Made By niqu#6101
