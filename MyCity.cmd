@@ -5,12 +5,12 @@ cd $mycity
 mode 54,15
 color E
 
-title MyCity -- v3.1.4
-echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+16, "Oops something creating errors") > errorMessage.vbs
+title MyCity -- v3.1.5
+echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+15, "Oops something creating errors") > errorMessage.vbs
 
-set housePrice=350
-set apartmentPrice=1250
-set villaPrice=2500
+set /a housePrice=(%random% %%888)
+set /a apartmentPrice=(%random% %%1800)
+set /a villaPrice=(%random% %%2800)
 goto startup
 	
 :game
@@ -56,9 +56,9 @@ goto startup
 
 :BuildMode
 	cls
-	echo 1 - Build House (350$)
-	echo 2 - Build Apartment (1250$)	
-	echo 3 - Build Villa (2500$)
+	echo 1 - Build House (%housePrice%$)
+	echo 2 - Build Apartment (%apartmentPrice%$)	
+	echo 3 - Build Villa (%villaPrice%$)
 	echo 4 - Exit build mode
 	set /p SelectBuild= 
 	if %SelectBuild%==1 goto BuildHouse
@@ -84,8 +84,8 @@ goto startup
 
 :WorkMode
 	cls
-	echo 1 - Work in Mc Donald's
-	echo 2 - Rob ATM
+	echo 1 - Work at Mc Donald's
+	echo 2 - Rob an ATM
 	echo 3 - Exit work mode
 	set /p SelectWork= 
 	if %SelectWork%==1 goto MCDonalds
@@ -99,9 +99,10 @@ goto startup
 	cls
 	echo Building house... (wait 3 sec)
 	ping -n 3 localhost > nul
+	set /a citizensEarned=(%random% %%6)
 	set /a cash=cash-housePrice
 	set /a countH=countH+1
-	set /a citizens=citizens+4
+	set /a citizens=citizens+citizensEarned
 	echo House Builded!
 	echo Your houses %countH%
 	echo Your cash %cash%
@@ -111,9 +112,10 @@ goto startup
 	cls
 	echo Building apartment... (wait 5 sec)
 	ping -n 5 localhost > nul
+	set /a citizensEarned=(%random% %%28)
 	set /a cash=cash-apartmentPrice
 	set /a countA=countA+1
-	set /a citizens=citizens+28
+	set /a citizens=citizens+citizensEarned
 	echo Apartment Builded!
 	echo Your apartments %countH%
 	echo Your cash %cash%
@@ -123,9 +125,10 @@ goto startup
 	cls
 	echo Building villa... (wait 8 sec)
 	ping -n 8 localhost > nul
+	set /a citizensEarned=(%random% %%58)
 	set /a cash=cash-villaPrice
 	set /a countV=countV+1
-	set /a citizens=citizens+58
+	set /a citizens=citizens+citizensEarned
 	echo Villa Builded!
 	echo Your villas %countH%
 	echo Your cash %cash%
