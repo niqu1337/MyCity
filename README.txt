@@ -1,1 +1,0 @@
-That version will never get updated. To get updated versions go to http://looped-software.pl/
