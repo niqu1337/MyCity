@@ -5,19 +5,14 @@ cd $citymodhook
 mode 54,15
 color E
 
-title MyCity -- CityModHook v2.2
-echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+16, "MyCity ERROR") > errorMessage.vbs
+title MyCity -- CityModHook
+echo x=msgbox("Unexpected error occured.", 0+15, "CityModHook") > errorMessage.vbs
 
-set housePrice=250
-set apartmentPrice=850
-set villaPrice=1250
-:: BELOW THIS TEXT IS PLACE WHERE U CAN PUT SOME MOD VARS (exam: set examplemod=1234 || also u can put text and )
-
-
-
+set /a housePrice=(%random% %%888)
+set /a apartmentPrice=(%random% %%1800)
+set /a villaPrice=(%random% %%2800)
 goto startup
-
-
+	
 :game
 	echo %cash% > cash.ini
 	echo %level% > level.ini
@@ -26,9 +21,17 @@ goto startup
 	echo %countA% > apartments.ini
 	echo %countV% > villas.ini
 
-	if %uiTheme%==Default color 07
+	:: Classic Themes
+	if %uiTheme%==Default color 0F
 	if %uiTheme%==Dark color 0E
 	if %uiTheme%==Light color 70
+	:: Custom Themes
+	if %uiTheme%==Red color 04
+	if %uiTheme%==Green color 02
+	if %uiTheme%==Blue color 01
+	if %uiTheme%==Purple color 05
+	if %uiTheme%==Aqua color 03
+	if %uiTheme%==Grey color 08
 
 	cls
 	echo +---------------------  MyCity  ---------------------+
@@ -37,32 +40,34 @@ goto startup
 	echo APARTMENS: %countA%  -  CITIZENS: %citizens%
 	echo +----------------------------------------------------+
 	echo.
-	echo + CityModHook Version v2.2
+	echo.
 	echo.
 	echo 1 - Build mode
 	echo 2 - Hire staff
-	echo 3 - Goto work
+	echo 3 - Play lotto
+	echo 4 - Goto work
 	echo.
-	echo 4 - Exit And Save
+	echo 5 - Exit And Save
 	set /p SelectGame= 
 	if %SelectGame%==1 goto BuildMode
 	if %SelectGame%==2 goto HireMode
 	if %SelectGame%==3 goto WorkMode
-	if %SelectGame%==4 goto Exit
+	if %SelectGame%==4 goto LottoMode
+	if %SelectGame%==5 goto Exit
 	goto error
 
 :BuildMode
-    cls
-    echo 1 - Build House (250$)
-    echo 2 - Build Apartment (850$)
-    echo 3 - Build Villa (1250$)
-    echo 4 - Exit build mode
-    set /p SelectBuild= 
-    if %SelectBuild%==1 goto BuildHouse
-    if %SelectBuild%==2 goto BuildApartment
-    if %SelectBuild%==3 goto BuildVilla
-    if %SelectBuild%==4 goto game
-    goto error
+	cls
+	echo 1 - Build House (%housePrice%$)
+	echo 2 - Build Apartment (%apartmentPrice%$)	
+	echo 3 - Build Villa (%villaPrice%$)
+	echo 4 - Exit build mode
+	set /p SelectBuild= 
+	if %SelectBuild%==1 goto BuildHouse
+	if %SelectBuild%==2 goto BuildApartment
+	if %SelectBuild%==3 goto BuildVilla
+	if %SelectBuild%==4 goto game
+	goto error
 
 :HireMode
 	cls
@@ -81,15 +86,14 @@ goto startup
 
 :WorkMode
 	cls
-	echo 1 - Work in Mc Donald's
-	echo 2 - Rob ATM
-	echo 3 - Work as 911 Operator
+	echo 1 - Work at Mc Donald's
+	echo 2 - Rob an ATM
+	echo 3 - Play lotto
 	echo 4 - Exit work mode
 	set /p SelectWork= 
 	if %SelectWork%==1 goto MCDonalds
 	if %SelectWork%==2 goto ATM
-	if %SelectWork%==3 goto Operator
-	if %SelectWork%==4 goto game
+	if %SelectWork%==3 goto game
 	goto error
 
 
@@ -98,9 +102,10 @@ goto startup
 	cls
 	echo Building house... (wait 3 sec)
 	ping -n 3 localhost > nul
+	set /a citizensEarned=(%random% %%6)
 	set /a cash=cash-housePrice
 	set /a countH=countH+1
-	set /a citizens=citizens+4
+	set /a citizens=citizens+citizensEarned
 	echo House Builded!
 	echo Your houses %countH%
 	echo Your cash %cash%
@@ -110,9 +115,10 @@ goto startup
 	cls
 	echo Building apartment... (wait 5 sec)
 	ping -n 5 localhost > nul
+	set /a citizensEarned=(%random% %%28)
 	set /a cash=cash-apartmentPrice
 	set /a countA=countA+1
-	set /a citizens=citizens+28
+	set /a citizens=citizens+citizensEarned
 	echo Apartment Builded!
 	echo Your apartments %countH%
 	echo Your cash %cash%
@@ -122,9 +128,10 @@ goto startup
 	cls
 	echo Building villa... (wait 8 sec)
 	ping -n 8 localhost > nul
+	set /a citizensEarned=(%random% %%58)
 	set /a cash=cash-villaPrice
 	set /a countV=countV+1
-	set /a citizens=citizens+58
+	set /a citizens=citizens+citizensEarned
 	echo Villa Builded!
 	echo Your villas %countH%
 	echo Your cash %cash%
@@ -195,162 +202,12 @@ goto startup
 	ping -n 3 localhost > nul
 	goto game
 
-:Operator
-	cls
-	echo Waiting for calls... (wait 8 sec)
-	ping -n 8 localhost > nul
-
-	set /a roll=(%random% %%3)
-	if roll==0 goto Operator
-	if roll==1 goto OperatorCALL1
-	if roll==2 goto OperatorCALL2
-	if roll==3 goto OperatorCALL3
-
-		:OperatorCALL1
-		cls
-		echo [Caller] Help me my cat on tree and he dont know how to get down!
-		echo Send the appropriate unit
-		echo 1 - Police Unit
-		echo 2 - Firefighter Unit
-		echo 3 - Paramedic Unit
-		echo 4 - Towtruck Unit
-		set /p OperatorOption= 
-		if %OperatorOption%==1 goto OperatorPOLICEF
-		if %OperatorOption%==2 goto OperatorFIREFIGHTER
-		if %OperatorOption%==3 goto OperatorPARAMEDICF
-		if %OperatorOption%==4 goto OperatorTOWTRUCKF
-		goto error
-
-		:OperatorCALL2
-		cls
-		echo [Caller] I got kidnapped fast help me!
-		echo Send the appropriate unit
-		echo 1 - Police Unit
-		echo 2 - Firefighter Unit
-		echo 3 - Paramedic Unit
-		echo 4 - Towtruck Unit
-		set /p OperatorOption= 
-		if %OperatorOption%==1 goto OperatorPOLICE
-		if %OperatorOption%==2 goto OperatorFIREFIGHTERF
-		if %OperatorOption%==3 goto OperatorPARAMEDICF
-		if %OperatorOption%==4 goto OperatorTOWTRUCKF
-		goto error
-
-		:OperatorCALL3
-		cls
-		echo [Caller] Someone blocked my car you can help me?
-		echo Send the appropriate unit
-		echo 1 - Police Unit
-		echo 2 - Firefighter Unit
-		echo 3 - Paramedic Unit
-		echo 4 - Towtruck Unit
-		set /p OperatorOption= 
-		if %OperatorOption%==1 goto OperatorPOLICEF
-		if %OperatorOption%==2 goto OperatorFIREFIGHTERF
-		if %OperatorOption%==3 goto OperatorPARAMEDICF
-		if %OperatorOption%==4 goto OperatorTOWTRUCK
-		goto error
-			
-			:OperatorPOLICE
-			echo [Operator] Police unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a earnedCash=(%random% %%300)
-			if earnedCash==0 goto OperatorPOLICE
-			set /a cash=cash+earnedCash
-			echo You earned %earnedCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-			:OperatorPOLICEF
-			echo [Operator] Police unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a lostCash=(%random% %%300)
-			if lostCash==0 goto OperatorPOLICEF
-			set /a cash=cash-lostCash
-			echo You lost %lostCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-
-
-			:OperatorFIREFIGHTER
-			echo [Operator] Firefighter unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a earnedCash=(%random% %%300)
-			if earnedCash==0 goto OperatorFIREFIGHTER
-			set /a cash=cash+earnedCash
-			echo You earned %earnedCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-			:OperatorFIREFIGHTERF
-			echo [Operator] Firefighter unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a lostCash=(%random% %%300)
-			if lostCash==0 goto OperatorFIREFIGHTERF
-			set /a cash=cash-lostCash
-			echo You lost %lostCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-
-
-			:OperatorPARAMEDIC
-			echo [Operator] Paramedic unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a earnedCash=(%random% %%300)
-			if earnedCash==0 goto OperatorPARAMEDIC
-			set /a cash=cash+earnedCash
-			echo You earned %earnedCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-			:OperatorPARAMEDICF
-			echo [Operator] Paramedic unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a lostCash=(%random% %%300)
-			if lostCash==0 goto OperatorPARAMEDICF
-			set /a cash=cash-lostCash
-			echo You lost %lostCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-
-
-			:OperatorTOWTRUCK
-			echo [Operator] Towtruck unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a earnedCash=(%random% %%300)
-			if earnedCash==0 goto OperatorTOWTRUCK
-			set /a cash=cash+earnedCash
-			echo You earned %earnedCash%!
-			ping -n 3 localhost > nul
-			goto game
-
-			:OperatorTOWTRUCKF
-			echo [Operator] Towtruck unit on way (wait 8 sec)
-			ping -n 8 localhost > nul
-
-			set /a lostCash=(%random% %%300)
-			if lostCash==0 goto OperatorTOWTRUCKF
-			set /a cash=cash-lostCash
-			echo You lost %lostCash%!
-			ping -n 3 localhost > nul
-			goto game
-
 :ATM
 	cls
 	if ATM==0 goto ATM
 	echo Robbing atm... (wait 18 sec)
 	ping -n 18 localhost > nul
-
+	
 	set /a roll=(%random% %%2)
 	if roll==0 goto ATM
 	if roll==1 goto ATMOK
@@ -363,7 +220,7 @@ goto startup
 		echo You earned %earnedCash%!
 		ping -n 3 localhost > nul
 		goto game
-
+		
 		:ATMBAD
 		set /a lostCash=(%random% %%600)
 		if lostCash==0 goto ATMBAD
@@ -372,11 +229,9 @@ goto startup
 		ping -n 3 localhost > nul
 		goto game
 		
-
-
 :LottoMode
 	cls
-	echo Not in citymodhook ;c - But also you can create mod for it
+	echo If you want to play lotto on citymodhook you have to code it your self
 	timeout 10 >>nul
 	goto game
 
@@ -384,16 +239,17 @@ goto startup
 	echo Dark > .uiTheme
 
 	cls
-	echo Enter your player name
+	echo Enter your character name
 	set /p "plrName=>> "
 	
 	cls
 	echo Enter your city name
 	set /p "cityName=>> "
-	
-	echo %plrName% > .player
+
+	echo %plrName% > .player 
 	echo %cityName% > .city
-	
+	:: ^^ useless vars that doing nothing lol ::
+
 	echo 250 > cash.ini
 	echo 1 > level.ini
 	echo 0 > citizens.ini
@@ -453,11 +309,11 @@ goto startup
 	
 :startup
 	cls
-    echo +---------------------  MyCity  ---------------------+
+	echo +---------------------  MyCity  ---------------------+
 	echo.
+	echo + With citymodhook
 	echo.
-	echo.
-	echo 1 - Play on new save
+	echo 1 - Create new save
 	echo 2 - Load last save
 		set /p SelectStartup= 
 		if %SelectStartup%==1 goto CreateSave
@@ -478,5 +334,5 @@ echo %countA% > apartments.ini
 echo %countV% > villas.ini
 exit
 
-:: MyCity Made By niqu#6101
-:: CityModHook Made By niqu#6101
+:: MyCity Made By niqu#1337
+:: CityModHook Made By niqu#1337

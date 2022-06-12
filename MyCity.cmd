@@ -5,8 +5,8 @@ cd $mycity
 mode 54,15
 color E
 
-title MyCity -- v3.1.5
-echo x=msgbox("Something creating errors ;c. You playing this game too wrong!", 0+15, "Oops something creating errors") > errorMessage.vbs
+title MyCity -- v3.1.6
+echo x=msgbox("Unexpected error occured.", 0+15, "MyCity") > errorMessage.vbs
 
 set /a housePrice=(%random% %%888)
 set /a apartmentPrice=(%random% %%1800)
@@ -230,7 +230,7 @@ goto startup
 
 :LottoMode
 	cls
-	echo I don't know what day lotto will be added ;c
+	echo Nah, lotto doesnt exists now check back later
 	timeout 10 >>nul
 	goto game
 
@@ -311,7 +311,7 @@ goto startup
 	echo.
 	echo.
 	echo.
-	echo 1 - Play on new save
+	echo 1 - Create new save
 	echo 2 - Load last save
 		set /p SelectStartup= 
 		if %SelectStartup%==1 goto CreateSave
@@ -332,4 +332,4 @@ echo %countA% > apartments.ini
 echo %countV% > villas.ini
 exit
 
-:: MyCity Made By niqu#6101
+:: MyCity Made By niqu#1337
