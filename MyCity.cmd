@@ -261,47 +261,38 @@ goto startup
 	for /f "Delims=" %%a in (.uiTheme) do (
 	set uiTheme=%%a
 	)
-	echo %uiTheme%
 
 	for /f "Delims=" %%a in (.player) do (
 	set plrName=%%a
 	)
-	echo %plrName%
 	
 	for /f "Delims=" %%a in (.city) do (
 	set cityName=%%a
 	)
-	echo %cityName%
 	
 	for /f "Delims=" %%a in (cash.ini) do (
 	set cash=%%a
 	)
-	echo %cash%
 	
 	for /f "Delims=" %%a in (level.ini) do (
 	set level=%%a
 	)
-	echo %level%
 	
 	for /f "Delims=" %%a in (citizens.ini) do (
 	set citizens=%%a
 	)
-	echo %citizens%
 	
 	for /f "Delims=" %%a in (houses.ini) do (
 	set countH=%%a
 	)
-	echo %countH%
 	
 	for /f "Delims=" %%a in (apartments.ini) do (
 	set countA=%%a
 	)
-	echo %countA%
 	
 	for /f "Delims=" %%a in (villas.ini) do (
 	set countV=%%a
 	)
-	echo %countV%
 	
 	goto game
 	
